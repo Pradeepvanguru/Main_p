@@ -1,0 +1,73 @@
+/* Background fade-in effect */
+body {
+    animation: fadeIn 2s ease-in-out;
+  }
+  
+  /* Button hover effect */
+  .btn {
+    transition: all 0.3s ease-in-out;
+    transform: translateY(0);
+  }
+  
+  .btn:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(90deg, #ff7eb3, #ff758c);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 117, 140, 0.5);
+  }
+  
+  /* Image hover effect */
+  img {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  }
+  
+  img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Background gradient animation */
+  .bg-secondary {
+    background: linear-gradient(45deg, #6c757d, #8e9eab);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+  }
+  
+  /* Cursor animation */
+  body {
+    cursor: url('https://cdn.iconscout.com/icon/premium/png-128-thumb/magic-wand-1841799-1562530.png'), auto;
+  }
+  
+  /* Keyframes */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes gradientBG {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  /* Table enhancement */
+  .table-responsive {
+    animation: fadeIn 1.5s ease-in-out;
+  }
+  
+  h3 {
+    font-weight: bold;
+    animation: fadeIn 2s ease-in-out;
+    text-shadow: 2px 2px #f99999;
+  }
+  
