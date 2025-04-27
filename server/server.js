@@ -28,13 +28,13 @@ app.use('/api/remainder', remainderRoutes);
 const buildpath=(path.join(__dirname, '../leave/build'));
 app.use(express.static(buildpath)); // Serve static files from the React app
 // console.log(path.join(__dirname, '../leave/build'));
-// console.log(path.join(buildpath , 'index.html'))
+console.log(path.join(buildpath , 'index'))
 
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api/leave') || req.path.startsWith('/api/remainder') || req.path.startsWith('/api/registers')) {
     return res.status(404).json({ error: 'API route not found' });
   }
-  res.sendFile(path.join(buildpath , 'index.html')); // Corrected path here
+  res.sendFile(path.join(buildpath)); // Corrected path here
   
 });
 
