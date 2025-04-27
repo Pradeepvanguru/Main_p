@@ -8,6 +8,7 @@ const LeaveRequest = require('./models/LeaveRequest');
 const  remainderRoutes= require('./models/remainderModel')
 require('dotenv').config();
 const cron = require('node-cron');
+const path = require('path');
 
 const app = express();
 
@@ -22,6 +23,17 @@ app.use(bodyParser.json());
 app.use('/api/leave', leaveRoutes);
 app.use('/api/remainder', remainderRoutes); 
 
+
+// Serve frontend
+app.use(express.static(path.join(__dirname, '../leave/build')));
+
+app.get('*', (req, res) => {
+  if (req.path.startsWith('/api/leave') || req.path.startsWith('/api/remainder') || req.path.startsWith('/api/registers') )
+    {
+      return res.status(404).json({ error: 'API route not found' }); // Proper JSON error for API
+    }
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 // API endpoint to fetch details by email  
 app.get('/api/registers/:email', async (req, res) => {
   try {

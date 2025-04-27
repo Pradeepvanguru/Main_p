@@ -8,7 +8,7 @@ function Table() {
 
   const fetchUserDetails = async (acceptedBy) => {
     try {
-      const response = await axios.get(` http://localhost:5000/api/registers/${acceptedBy}`);
+      const response = await axios.get(` ${process.env.REACT_APP_URL}/registers/${acceptedBy}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching user details:', error);
@@ -19,7 +19,7 @@ function Table() {
   const fetchAcceptedRequests = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:5000/api/leave');
+      const response = await axios.get(`${process.env.REACT_APP_URL}/api/leave`);
       const requests = response.data;
 
       const filteredRequests = requests.filter((request) => {

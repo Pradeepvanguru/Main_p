@@ -72,7 +72,7 @@ const RegistrationForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(' http://localhost:5000/registers', formData);
+      const response = await axios.post(`${process.env.REACT_APP_URL}/registers`, formData);
       alert("Registration successful...!!");
       
       console.log(response);
