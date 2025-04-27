@@ -32,6 +32,7 @@ app.get('*', (req, res) => {
     return res.status(404).json({ error: 'API route not found' });
   }
   res.sendFile(path.join(__dirname, '../leave/build/index.html')); // Corrected path here
+  
 });
 
 // API endpoint to fetch details by email  
