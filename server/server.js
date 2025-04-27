@@ -28,12 +28,12 @@ app.use('/api/remainder', remainderRoutes);
 app.use(express.static(path.join(__dirname, '../leave/build')));
 
 app.get('*', (req, res) => {
-  if (req.path.startsWith('/api/leave') || req.path.startsWith('/api/remainder') || req.path.startsWith('/api/registers') )
-    {
-      return res.status(404).json({ error: 'API route not found' }); // Proper JSON error for API
-    }
-  res.sendFile(path.join(__dirname, 'index.html'));
+  if (req.path.startsWith('/api/leave') || req.path.startsWith('/api/remainder') || req.path.startsWith('/api/registers')) {
+    return res.status(404).json({ error: 'API route not found' });
+  }
+  res.sendFile(path.join(__dirname, '../leave/build/index.html')); // Corrected path here
 });
+
 // API endpoint to fetch details by email  
 app.get('/api/registers/:email', async (req, res) => {
   try {
