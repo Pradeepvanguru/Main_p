@@ -17,13 +17,7 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.log('Failed to connect to MongoDB', err));
 
-app.use(cors({
-  origin: 'http://localhost:3000',
-  methods: ["GET", "POST", "DELETE", "PUT"],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  preflightContinue: true,
-  optionsSuccessStatus: 200
-}));
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/api/leave', leaveRoutes);
@@ -31,13 +25,16 @@ app.use('/api/remainder', remainderRoutes);
 
 
 // Serve frontend
-app.use(express.static(path.join(__dirname, '../leave/build')));
+const buildpath=(path.join(__dirname, '../leave/build'));
+app.use(express.static(buildpath)); // Serve static files from the React app
+// console.log(path.join(__dirname, '../leave/build'));
+// console.log(path.join(buildpath , 'index.html'))
 
 app.get('*', (req, res) => {
   if (req.path.startsWith('/api/leave') || req.path.startsWith('/api/remainder') || req.path.startsWith('/api/registers')) {
     return res.status(404).json({ error: 'API route not found' });
   }
-  res.sendFile(path.join(__dirname, '../leave/build/index.html')); // Corrected path here
+  res.sendFile(path.join(buildpath , 'index.html')); // Corrected path here
   
 });
 
